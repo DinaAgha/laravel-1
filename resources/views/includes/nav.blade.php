@@ -13,16 +13,17 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Clients</a>
+      <a class="navbar-brand" href="#">Clients Homepage</a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="{{ route('addClient')}}">Add</a></li>
-          <li><a href="{{route('clients')}}">Clients</a></li>
-          <li><a href="#">Page 1-2</a></li>
-          <li><a href="#">Page 1-3</a></li>
+          <li><a href="{{route('client')}}">Clients</a></li>
+          
+          <!-- <li><a href="{{route('insertClient')}}">Insert Client</a></li>
+          <li><a href="#">Page 1-3</a></li> -->
         </ul>
       </li>
-      <li><a href="#">Page 2</a></li>
+      <li><a href="{{route('trashClient')}}">trash</a></li>
       <li><a href="#">Page 3</a></li>
     </ul>
   </div>

@@ -10,16 +10,33 @@
 </head>
 <body>
 
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Students</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="{{ route('addStudent')}}">Add</a></li>
+          <li><a href="{{route('student')}}">Students</a></li>
+          <li><a href="#">Page 1-2</a></li>
+          <li><a href="#">Page 1-3</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Page 2</a></li>
+      <li><a href="#">Page 3</a></li>
+    </ul>
+  </div>
+</nav>
 <body>
 <div class="container">
 <li class="active"><a href="{{ route('addStudent')}}">Add</a></li>
-          <li><a href="{{route('students')}}">Student</a></li>
+          <li><a href="{{route('student')}}">Student</a></li>
    
         @csrf
     <label for="name">studentName:</label><br>
     <input type="text" id="name" name="name" value="name"><br>
     <label for="id">Student ID</label><br>
-    <input type="text" id="id" name="id" value="id"><br><br>
+    <input type="text" id="student_id" name="student_id" value="student_id"><br><br>
     <label for="age">AGE:</label><br>
     <input type="text" id="age" name="age" value="age"><br><br>
  

@@ -14,11 +14,12 @@
         @csrf
         <label for="name">studentName:</label><br>
     <input type="text" id="name" name="name" value="name"><br>
-    <label for="id">Student ID</label><br>
-    <input type="text" id="id" name="id" value="id"><br><br>
+    <label for="student_id">Student ID</label><br>
+    <input type="text" id="student_id" name="student_id" value="student_id"><br><br>
     <label for="age">AGE:</label><br>
     <input type="text" id="age" name="age" value="age"><br><br>
     <input type="submit" value="Submit">
+    
     </form>
 </div>
 </body>

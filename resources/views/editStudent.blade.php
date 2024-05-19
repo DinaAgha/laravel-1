@@ -17,7 +17,7 @@
     <label for="name">StudentName:</label><br>
     <input type="text" id="name" name="name" value="{{ $student->name }}"><br>
     <label for="studnet_id">Student_id:</label><br>
-    <input type="text" id="student_id'" name="student_id" value="{{ $student->student_id }}"><br><br>
+    <input type="text" id="student_id" name="student_id" value="{{ $student->student_id }}"><br><br>
     <label for="age">Age:</label><br>
     <input type="text" id="age" name="age" value="{{ $student->age }}"><br><br>
     <input type="submit" value="Submit">

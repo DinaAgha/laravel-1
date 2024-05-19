@@ -17,7 +17,7 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="{{ route('addClient')}}">Add</a></li>
-          <li><a href="{{route('clients')}}">Clients</a></li>
+          <li><a href="{{route('client')}}">Clients</a></li>
           <li><a href="#">Page 1-2</a></li>
           <li><a href="#">Page 1-3</a></li>
         </ul>
@@ -32,6 +32,11 @@
     <form action="{{ route('insertClient') }}" method="POST">
         @csrf
     <label for="clientName">clientName:</label><br>
+    <p style="color:red">
+    @error('clientName')
+    {{$message}}
+    @enderror
+  </p>
     <input type="text" id="clientName" name="clientName" value="client"><br>
     <label for="phone">phone:</label><br>
     <input type="text" id="phone" name="phone" value="phone"><br><br>
