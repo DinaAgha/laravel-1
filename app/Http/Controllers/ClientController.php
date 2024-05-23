@@ -4,137 +4,120 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client;
+use DB;
 
 class ClientController extends Controller
 {
-    private $columns = ['clientName','phone','email','website'];
     public function index()
     {
-      $client = Client::get();
-      return view('client', compact('client'));
+        $client = Client::get();
+        return view('client', compact('client'));
     }
 
+    public function create()
+    {
+        return view('addClient');
+    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-   
-     public function create()
-{
-    return view('addClient');
-}
-    
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    // public function store()
-    // {
-    //     $client = new Client();
-    //     $client->clientName = 'Egypt Air';
-    //     $client->phone = '01244874878';
-    //     $client->email = 'EgyptAir@gmail.com';
-    //     $client->website = 'https://egyptair.com';
-    //     $client->save();
-    //     return 'Inserted Successfully';
-    
-    // }
-    
-       
-    // }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-    //     $client = new Client();
-    //     $client->clientName = $request->clientName;
-    //     $client->phone =$request->phone;
-    //     $client->email =$request->email;
-    //     $client->website =$request->website;
-    //     $client->save();
-       $data =$request->validate([
-        'clientName' =>'required|max:100|min:5',
-        'phone'=>'required|min:11',
-        'email'=>'required|email:rfc',
-        'website'=>'required',
-       ]);
-       
-       Client::create($data);
-       return redirect('client');
-    }
-    //     Client::create($request->only($this->columns));
-    //     return redirect('client');
-    // }
+        $messages = $this->errMsg();
 
+        $data = $request->validate([
+            'clientName' => 'required|max:100|min:5',
+            'phone' => 'required|min:11',
+            'email' => 'required|email:rfc',
+            'website' => 'required',
+            'city' => 'required|max:30',
+            'image' => 'required'
+        ], $messages);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        $client = Client::findOrFail($id);
-        return view('showClient',compact('client'));
-    }
+        $imgEXT = $request->image->getClientOriginalExtension();
+        $fileName = time() . '.' . $imgEXT;
+        $path = 'assets/images';
+        $request->image->move($path, $fileName);
+        $data['image'] = $fileName;
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $client = Client::findOrFail($id);
-        return view('editClient',compact('client'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        Client::where('id', $id)->update($request->only($this->columns));
+        $data['active'] = isset($request->active);
+        
+        Client::create($data);
         return redirect('client');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    public function show(string $id)
+    {
+        $client = Client::findOrFail($id);
+        return view('showClient', compact('client'));
+    }
+
+    public function edit(string $id)
+    {
+        $client = Client::findOrFail($id);
+        return view('editClient', compact('client'));
+    }
+
+    public function update(Request $request, string $id)
+    {
+        $messages = $this->errMsg();
+        $data = $request->validate([
+            'clientName' => 'required|max:100|min:5',
+            'phone' => 'required|min:11',
+            'email' => 'required|email:rfc',
+            'website' => 'required',
+            'city' => 'required',
+            'active' => 'required',
+            'image' => 'nullable|mimes:png,jpg,jpeg|max:2048',
+        ], $messages);
+
+        if ($request->hasFile('image')) {
+            $imgEXT = $request->image->getClientOriginalExtension();
+            $fileName = time() . '.' . $imgEXT;
+            $path = 'assets/images';
+            $request->image->move($path, $fileName);
+            $data['image'] = $fileName;
+        } else {
+            $client = Client::findOrFail($id);
+            $data['image'] = $client->image;
+        }
+
+        $data['active'] = isset($request->active);
+        Client::where('id', $id)->update($data);
+        return redirect('client');
+    }
+
     public function destroy(Request $request)
     {
-        $id= $request->id;
+        $id = $request->id;
         Client::where('id', $id)->delete();
         return redirect('client');
     }
 
-    //** 
-    //*trash.
-    //
     public function trash()
     {
         $trash = Client::onlyTrashed()->get();
         return view('trashClient', compact('trash'));
-
     }
 
-    //restore
-
-    public function restore (string $id)
+    public function restore(string $id)
     {
-      Client::where('id',$id)->restore();
-    
-      return redirect('client');
-}
+        Client::where('id', $id)->restore();
+        return redirect('client');
+    }
 
-public function forceDelete(Request $request)
-{
-    
+    public function forceDelete(Request $request)
     {
-        $id= $request->id;
+        $id = $request->id;
         Client::where('id', $id)->forceDelete();
         return redirect('trashClient');
-
     }
 
-}
-
+    public function errMsg()
+    {
+        return [
+            'clientName.required' => 'The Client Name is Missed, please insert',
+            'clientName.min' => 'Length less than 5, please insert more characters.',
+            'phone.required' => 'The phone number is missing',
+            'phone.min' => 'The phone number is incorrect',
+        ];
+    }
 }

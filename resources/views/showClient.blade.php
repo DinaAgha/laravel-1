@@ -11,14 +11,18 @@
   <title>{{$client->clientName}}</title>
 </head>
 <body>
-      <h1><strong>Client: </strong>{{ $client->clientName }}</h1>
+      <p><img src="{{asset('assets/images/'. $client->image)}}" alt=""></p>
+      <h1><strong>Client Name: </strong>{{ $client->clientName }}</h1>
       <hr>
-      <h1><strong>Client: </strong>{{ $client->phone }}</h1>
+      <h1><strong>Client phone number: </strong>{{ $client->phone }}</h1>
       <hr>
-      <h1><strong>Client: </strong>{{ $client->email }}</h1>
+      <h1><strong>Client Email: </strong>{{ $client->email }}</h1>
       <hr>
-      <h1><strong>Client: </strong>{{ $client->website }}</h1>
+      <h1><strong>Client Website: </strong>{{ $client->website }}</h1>
       <hr>
-      
+      <h1><strong>Client City: </strong>{{ $client->city }}</h1>
+      <hr>
+      <h1><strong>Client Status: </strong>{{$client->active ==1? 'yes':'no'}}</h1>
+      <hr>
 
 </body>

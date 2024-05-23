@@ -1,29 +1,78 @@
+html
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Edit Client</title>
+  </head>
 <body>
-    @include('includes.nav')
+  
+  @include('includes.nav')
 
-<div class="container">
-    <form action="{{ route('insertClient') }}" method="POST">
-        @csrf
-    <label for="clientName">clientName:</label><br>
-    <input type="text" id="clientName" name="clientName" value="{{ $client->clientName }}"><br>
-    <label for="phone">phone:</label><br>
-    <input type="text" id="phone" name="phone" value="{{ $client->phone }}"><br><br>
-    <label for="email">email:</label><br>
-    <input type="text" id="email" name="email" value="{{ $client->email }}"><br><br>
+<div class="container" style="margin-left: 20px ">
+  <h2>Edit Client</h2>
+
+  <form action="{{ route('updateClients', $client->id) }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    @method('put')
+    <label for="clientName">Client name:</label><br>
+    <p style="color: red">
+      @error('clientName')
+        {{ $message }}
+      @enderror
+    </p>
+    <input type="text" id="clientName" name="clientName" class="form-control" value="{{ $client->clientName }}"><br>
+    <label for="phone">Phone:</label><br>
+    <p style="color: red">
+      @error('phone')
+        {{ $message }}
+      @enderror
+    </p>
+    <input type="text" id="phone" name="phone" class="form-control" value="{{ $client->phone }}"><br><br>
+    <label for="email">Email:</label><br>
+    <p style="color: red">
+      @error('email')
+        {{ $message }}
+      @enderror
+    </p>
+    <input type="email" id="email" name="email" class="form-control" value="{{ $client->email }}"><br><br>
     <label for="website">website:</label><br>
-    <input type="text" id="website" name="website" value="{{ $client->website }}"><br><br>
+    <p style="color: red">
+      @error('website')
+        {{ $message }}
+      @enderror
+    </p>
+    <input type="text" id="website" name="website" class="form-control" value="{{ $client->website }}"><br><br>
+    <label for="city">City:</label><br>
+    <p style="color: red">
+      @error('city')
+        {{ $message }}
+      @enderror
+    </p>
+    <select name="city" id="city" class="form-control">
+      <option value="">Please Select City</option>
+      <option value="Cairo" @if($client->city == 'Cairo') selected @endif>Cairo</option>
+      <option value="Giza" @if($client->city == 'Giza') selected @endif>Giza</option>
+      <option value="Alex" @if($client->city == 'Alex') selected @endif>Alex</option>
+    </select>
+    <br><br>
+    <label for="active">Active:</label><br>
+    <input type="checkbox" id="active" name="active" class="form-control" @if($client->active) checked @endif><br><br>
+
+    <p><img src="{{ asset('assets/images/' . $client->image)  }}" alt=""></p>
+    <label for="image">Image:</label><br>
+    <p style="color: red">
+      @error('image')
+        {{ $message }}
+      @enderror
+    </p>
+    
+    <input type="file" id="image" name="image" class="form-control"><br><br>
+
     <input type="submit" value="Submit">
-    </form>
+  </form> 
 </div>
 
 </body>

@@ -29,7 +29,7 @@
 </nav>
   <!--End Nav bar-->
 <div class="container">
-    <form action="{{ route('insertClient') }}" method="POST">
+    <form action="{{ route('insertClient') }}" method="POST" enctype="multipart/form-data">
         @csrf
     <label for="clientName">clientName:</label><br>
     <p style="color:red">
@@ -37,14 +37,49 @@
     {{$message}}
     @enderror
   </p>
-    <input type="text" id="clientName" name="clientName" value="client"><br>
+    <input type="text" id="clientName" name="clientName"class="form-control"value="{{old('clientName')}}" ><br>
+    
     <label for="phone">phone:</label><br>
-    <input type="text" id="phone" name="phone" value="phone"><br><br>
-    <label for="email">email:</label><br>
-    <input type="text" id="email" name="email" value="email"><br><br>
+    <p style="color:red">
+    @error('phone')
+    {{$message}}
+    @enderror
+  </p>
+
+    <input type="text" id="phone" name="phone" class="form-control"value="{{old('phone')}}" ><br><br>
+
+    <label for="email">E_mail:</label><br>
+    <P style="color:red">
+    @error('email')
+    {{$message}}
+    @enderror
+    </P>
+    <input type="text" id="email" name="email" class="form-control"value="{{old('email')}}" ><br><br>
+
     <label for="website">website:</label><br>
-    <input type="text" id="website" name="website" value="website"><br><br>
+    <P style="color:red">
+    @error('website')
+    {{$message}}
+    @enderror
+    </P>
+    <input type="text" id="website" name="website" class="form-control"value="{{old('website')}}" ><br><br>
+    <label for="city">City:</label><br>
+    <select name="city" id="city" class="form-control">
+      <option value="">Please Select City</option>
+      <option value="Cairo">Cairo</option>
+      <option value="Giza">Giza</option>
+      <option value="Alex">Alex</option>
+    </select>
+    <br><br>
+
+    <label for="image">Image:</label><br>
+    <input type="file" id="image" name="image" class="form-control"><br><br>
+
+    <label for="active">Active:</label><br>
+    <input type="checkbox" id="active" name="active" class="form-control"><br><br>
+
     <input type="submit" value="Submit">
+
     </form>
 </div>
 

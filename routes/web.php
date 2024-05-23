@@ -27,7 +27,7 @@ Route::post('insertClients',[ClientController::class,'store'])->name('insertClie
 Route::get('addClient',[ClientController::class,'create'])->name('addClient');
 Route::get('client',[ClientController::class,'index'])->name('client');
 Route::get('editClient/{id}',[ClientController::class,'edit'])->name('editClient');
-Route::put('updateClient/{id}',[ClientController::class,'update'])->name('updateClient');
+Route::put('updateClients/{id}',[ClientController::class,'update'])->name('updateClients');
 Route::get('showClient/{id}',[ClientController::class,'show'])->name('showClient');
 Route::delete('delClient',[ClientController::class,'destroy'])->name('delClient');
 Route::delete('forceDelete',[ClientController::class,'forceDelete'])->name('forceDelete');
