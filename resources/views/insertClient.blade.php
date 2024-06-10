@@ -12,16 +12,16 @@
 <div class="container">
     <form action="{{ route('insertClient') }}" method="POST">
         @csrf
-        <label for="name">Client Name:</label><br>
-      
-    <input type="text" id="clientName" name="clientName" value="{{ $client->clientName }}"><br>
+    <label for="clientName">Client Name:</label><br>
+    <input type="text" id="clientName" name="clientName" value="clientName"><br><br>
     <label for="phone">phone:</label><br>
-    <input type="text" id="phone" name="phone" value="{{ $client->phone }}"><br><br>
+    <input type="text" id="phone" name="phone" value="phone"><br><br>
     <label for="email">email:</label><br>
-    <input type="text" id="email" name="email" value="{{ $client->email }}"><br><br>
+    <input type="text" id="email" name="email" value="email"><br><br>
     <label for="website">website:</label><br>
-    <input type="text" id="website" name="website" value="{{ $client->website }}"><br><br>
+    <input type="text" id="website" name="website" value="website"><br><br>
     <input type="submit" value="Submit">
+
     </form>
 
 </div>

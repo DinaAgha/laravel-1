@@ -9,22 +9,19 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Clients Homepage</a>
+    <a class="navbar-brand" href="{{route('client')}}">Clients Homepage</a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="{{ route('addClient')}}">Add</a></li>
           <li><a href="{{route('client')}}">Clients</a></li>
-          
-          <!-- <li><a href="{{route('insertClient')}}">Insert Client</a></li>
-          <li><a href="#">Page 1-3</a></li> -->
-        </ul>
-      </li>
-      <li><a href="{{route('trashClient')}}">trash</a></li>
-      <li><a href="#">Page 3</a></li>
+          <li><a href="{{route('trashClient')}}">trash</a></li>
+          <li><a href="{{route('insertClient')}}">Insert Client</a></li>
+
+          @yield('menu')
+          @stack('submenu')
     </ul>
   </div>
 </nav>

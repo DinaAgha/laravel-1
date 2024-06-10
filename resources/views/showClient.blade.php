@@ -20,7 +20,7 @@
       <hr>
       <h1><strong>Client Website: </strong>{{ $client->website }}</h1>
       <hr>
-      <h1><strong>Client City: </strong>{{ $client->city }}</h1>
+      <h1><strong>Client City: </strong>{{ $client->city->city }}</h1>
       <hr>
       <h1><strong>Client Status: </strong>{{$client->active ==1? 'yes':'no'}}</h1>
       <hr>

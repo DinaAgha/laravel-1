@@ -10,7 +10,7 @@
 
 </head>
 <body>
-    @include('includes.nav')
+    @include('includes.nav2')
     <div class="container">
     <h2>Trash Students</h2>
     <table class="table table-hover">

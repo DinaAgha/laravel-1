@@ -7,11 +7,6 @@ use App\Http\Controllers\MyController;
 
 use App\Http\Controllers\ClientController;
 
-
-
-
-
-
 Route::get('student',[StudentController::class,'index'])->name('student');
 Route::get('addStudent',[StudentController::class,'create'])->name('addStudent');
 Route::get('student',[StudentController::class,'index'])->name('student');
@@ -23,7 +18,7 @@ Route::delete('forceDelete',[StudentController::class,'forceDelete'])->name('for
 Route::get('trashStudent',[StudentController::class,'trash'])->name('trashStudent');
 Route::get('restoreStudent/{id}',[StudentController::class,'restore'])->name('restoreStudent');
 
-Route::post('insertClients',[ClientController::class,'store'])->name('insertClient');
+Route::get('insertClients',[ClientController::class,'insert'])->name('insertClient');
 Route::get('addClient',[ClientController::class,'create'])->name('addClient');
 Route::get('client',[ClientController::class,'index'])->name('client');
 Route::get('editClient/{id}',[ClientController::class,'edit'])->name('editClient');
@@ -32,7 +27,10 @@ Route::get('showClient/{id}',[ClientController::class,'show'])->name('showClient
 Route::delete('delClient',[ClientController::class,'destroy'])->name('delClient');
 Route::delete('forceDelete',[ClientController::class,'forceDelete'])->name('forceDelete');
 Route::get('trashClient',[ClientController::class,'trash'])->name('trashClient');
-Route::get('restoreClient/{id}',[ClientController::class,'restore'])->name('restoreClient');
+Route::get('restoreClient',[ClientController::class,'restore'])->name('restoreClient');
+
+// Route::get('restoreClient/{id}',[ClientController::class,'restore'])->name('restoreClient');
+
 
 // Route::get('/students', [StudentController::class, 'create'])->name('students.create');
 // Route::post('/students', [StudentController::class, 'store'])->name('students.store');
@@ -83,3 +81,7 @@ Route::get('restoreClient/{id}',[ClientController::class,'restore'])->name('rest
 Route::post('ex',function(){
     return'Data recieved';
 })->name('recieveForm');
+
+Route::get('/',function() {
+    return view ('stacked');
+});

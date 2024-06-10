@@ -16,7 +16,8 @@ return new class extends Migration
         $table->id();
         $table->string('name',50);
         $table->string('student_id',10);
-        $table->string('age', 2);
+        $table->foreignId('age_id')->constrained('ages');
+        // $table->string('age', 2);
         $table->softDeletes();
         $table->timestamps();
     });

@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client;
+use Illuminate\Support\Facades\File;
+use App\Traits\UploadFile;
 use DB;
 
 class ClientController extends Controller
+
 {
+    use UploadFile;
+    private $columns = ['clientName','phone','email','website','active','image'];
     public function index()
     {
         $client = Client::get();
@@ -18,6 +23,11 @@ class ClientController extends Controller
     {
         return view('addClient');
     }
+    public function insert()
+    {
+        return view('insertClient');
+    }
+
 
     public function store(Request $request)
     {
@@ -32,10 +42,11 @@ class ClientController extends Controller
             'image' => 'required'
         ], $messages);
 
-        $imgEXT = $request->image->getClientOriginalExtension();
-        $fileName = time() . '.' . $imgEXT;
-        $path = 'assets/images';
-        $request->image->move($path, $fileName);
+        // $imgEXT = $request->image->getClientOriginalExtension();
+        // $fileName = time() . '.' . $imgEXT;
+        // $path = 'assets/images';
+        // $request->image->move($path, $fileName);
+        $fileName = $this->upload($request->image,'assets/images');
         $data['image'] = $fileName;
 
         $data['active'] = isset($request->active);
@@ -70,15 +81,19 @@ class ClientController extends Controller
         ], $messages);
 
         if ($request->hasFile('image')) {
-            $imgEXT = $request->image->getClientOriginalExtension();
-            $fileName = time() . '.' . $imgEXT;
-            $path = 'assets/images';
-            $request->image->move($path, $fileName);
+
+            $fileName = $this->upload($request->image,'assets/images');
             $data['image'] = $fileName;
-        } else {
-            $client = Client::findOrFail($id);
-            $data['image'] = $client->image;
         }
+            // $imgEXT = $request->image->getClientOriginalExtension();
+            // $fileName = time() . '.' . $imgEXT;
+            // $path = 'assets/images';
+            // $request->image->move($path, $fileName);
+            // $data['image'] = $fileName;
+        // } else {
+        //     $client = Client::findOrFail($id);
+        //     $data['image'] = $client->image;
+        // }
 
         $data['active'] = isset($request->active);
         Client::where('id', $id)->update($data);

@@ -2,7 +2,7 @@
 
 use Illuminate\support\Facades\Route;
 Route::get('/',function() {
-    return view ('welcome');
+    return view ('stacked');
 });
 
 Route::get('dina1', function(){

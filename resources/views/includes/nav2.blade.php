@@ -18,13 +18,11 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="{{ route('addStudent')}}">Add</a></li>
           <li><a href="{{route('student')}}">Students</a></li>
-          
-          <li><a href="#">Page 1-2</a></li>
-          <li><a href="#">Page 1-3</a></li>
+          <li><a href="{{route('trashStudent')}}">trash</a></li>
+          @yield('menu')
+          @stack('submenu')
         </ul>
       </li>
-      <li><a href="{{route('trashStudent')}}">trash</a></li>
-      <li><a href="#">Page 3</a></li>
     </ul>
   </div>
 </nav>

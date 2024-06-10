@@ -12,7 +12,7 @@
 <div class="container">
     <form action="{{ route('insertStudent') }}" method="POST">
         @csrf
-        <label for="name">studentName:</label><br>
+    <label for="name">studentName:</label><br>
     <input type="text" id="name" name="name" value="name"><br>
     <label for="student_id">Student ID</label><br>
     <input type="text" id="student_id" name="student_id" value="student_id"><br><br>
