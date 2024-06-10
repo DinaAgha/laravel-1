@@ -44,6 +44,15 @@
           </td> 
         </tr>
         @endforeach
+
+@foreach ($student->allergies as $allergy)
+    {{ $allergy->name }}
+@endforeach
+
+
+@foreach ($allergy->students as $student)
+    {{ $student->name }}
+@endforeach
       
     </tbody>
   </table>

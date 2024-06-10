@@ -39,8 +39,9 @@
     <input type="text" id="student_id" name="student_id" value="student_id"><br><br>
     <label for="age">AGE:</label><br>
     <input type="text" id="age" name="age" value="age"><br><br>
- 
- 
+    <label for="age">Allergy:</label><br>
+    <input type="text" id="allergy" name="allergy" value="allergy"><br><br>
+
     <input type="submit" value="Submit">
     </form>
 </div>

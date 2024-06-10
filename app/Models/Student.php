@@ -16,6 +16,10 @@ class Student extends Model
         'student_id',
         'age'
     ];
+    public function allergies()
+{
+    return $this->belongsToMany(Allergy::class, 'student_allergies', 'student_id', 'allergy_id');
+}
 
     // public function Age(){
     //     return $this->belongsTo(age::class);

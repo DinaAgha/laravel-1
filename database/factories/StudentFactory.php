@@ -18,8 +18,10 @@ class StudentFactory extends Factory
     {
         return [
             'name'=> fake()->name(),
+            'allergy_id'=>fake()->name(),
             'student_id'=> fake()->name(),
-            'age'=> fake()->name(),
+            'age-id'=> fake()->name(),
+            'allergy'=>fake()->name(),
 
         ];
     }

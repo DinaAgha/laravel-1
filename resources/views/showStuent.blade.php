@@ -17,6 +17,17 @@
       <hr>
       <h1><strong>Student: </strong>{{ $student->age }}</h1>
       <hr>
+      <h1><strong>Allergy: </strong>{{ $student->allergy }}</h1>
+      <hr>
    
+
+@foreach ($student->allergies as $allergy)
+    {{ $allergy->name }}
+@endforeach
+
+
+@foreach ($allergy->students as $student)
+    {{ $student->name }}
+@endforeach
 
 </body>
